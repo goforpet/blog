@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 
+import FooterTax from "../ui/footer-tax"
+
 import "../../scss/components/element/_footer.scss"
 
 export default function Footer() {
@@ -53,38 +55,6 @@ export default function Footer() {
   )
 
   const owner = site.siteMetadata.organization
-
-  let tax = []
-
-  if (owner.taxId || owner.vatId) {
-    if (owner.taxId === owner.vatId) {
-      tax.push({
-        term: "Codice Fiscale / Partita IVA",
-        definition: owner.vatId,
-        prop: "vatID",
-      })
-    } else {
-      tax.push({
-        term: "Codice Fiscale",
-        definition: owner.vatId,
-        prop: "taxID",
-      })
-      tax.push({
-        term: "Partita IVA",
-        definition: owner.taxId,
-        prop: "vatID",
-      })
-    }
-  }
-
-  if (owner.registryId) {
-    tax.push({
-      term: "REA",
-      definition: owner.registryId,
-      prop: null,
-    })
-  }
-
   const seo = siteBuildMetadata.fields.seo
   let socials = []
 
@@ -117,69 +87,58 @@ export default function Footer() {
             <div className="logo">
               <i className="icon-goforpet-logo"></i>
             </div>
-            <h3 itemProp="legalName">{owner.company}</h3>
+            <h3 className="company" itemProp="legalName">
+              {owner.company}
+            </h3>
             <div>
-              <dl itemProp="location">
-                <dd itemProp="streetAddress">{owner.address}</dd>
-                <dd>
+              <ul itemProp="location">
+                <li itemProp="streetAddress">{owner.address}</li>
+                <li>
                   <span itemProp="postalCode">{owner.zipCode}</span>{" "}
                   <span itemProp="addressLocality">{owner.city}</span> (
                   <span itemProp="addressRegion">{owner.province}</span>)
-                </dd>
-                <dd itemProp="addressCountry">{owner.country}</dd>
-              </dl>
-            </div>
-            {tax && (
-              <ul>
-                {tax.map((d, index) => {
-                  return (
-                    <li key={index}>
-                      <dt>{d.term}</dt>
-                      <dd itemProp={d.prop}>{d.definition}</dd>
-                    </li>
-                  )
-                })}
+                </li>
+                <li itemProp="addressCountry">{owner.country}</li>
               </ul>
-            )}
+            </div>
+            <FooterTax {...owner} />
           </div>
           <div className="column is-one-third">
-            <aside className="menu">
-              {owner.email && (
-                <>
-                  <p className="menu-label">Note Legali</p>
-                  <ul className="menu-list">
-                    <li itemProp="contactPoint">
-                      <a
-                        href={"mailto:" + owner.email}
-                        itemProp="email"
-                        title="E-Mail"
-                      >
-                        <span className="icon">
-                          <i className="icon-goforpet-mail"></i>
-                        </span>
-                        {owner.email}
-                      </a>
-                    </li>
-                  </ul>
-                </>
-              )}
-              {pages.nodes.length > 0 && (
-                <>
-                  <p className="menu-label">Note Legali</p>
-                  <ul className="menu-list">
-                    {pages.nodes.map((page, index) => {
-                      const slug = "/pages/" + page.slug
+            {owner.email && (
+              <aside className="menu">
+                <p className="menu-label">Note Legali</p>
+                <ul className="menu-list">
+                  <li itemProp="contactPoint">
+                    <a
+                      href={"mailto:" + owner.email}
+                      itemProp="email"
+                      title="E-Mail"
+                    >
+                      <span className="icon">
+                        <i className="icon-goforpet-mail"></i>
+                      </span>
+                      {owner.email}
+                    </a>
+                  </li>
+                </ul>
+              </aside>
+            )}
+            {pages.nodes.length > 0 && (
+              <aside className="menu">
+                <p className="menu-label">Note Legali</p>
+                <ul className="menu-list">
+                  {pages.nodes.map((page, index) => {
+                    const slug = "/pages/" + page.slug
 
-                      return (
-                        <li key={index}>
-                          <Link to={slug}>{page.title}</Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </>
-              )}
-            </aside>
+                    return (
+                      <li key={index}>
+                        <Link to={slug}>{page.title}</Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </aside>
+            )}
           </div>
           {socials && (
             <div className="column is-one-third social-follow">

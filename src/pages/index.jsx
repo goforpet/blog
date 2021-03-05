@@ -50,7 +50,7 @@ export const indexPageQuery = graphql`
             childImageSharp {
               gatsbyImageData(
                 width: 640
-                height: 320
+                height: 440
                 placeholder: BLURRED
                 formats: [AUTO, WEBP, AVIF]
               )

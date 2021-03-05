@@ -6,7 +6,7 @@ export default function PostThumb({ post }) {
   if (post.coverImage && post.coverImage.localFile) {
     const image = getImage(post.coverImage.localFile)
 
-    return <GatsbyImage image={image} alt={post.title} className="post-thumb" />
+    return <GatsbyImage image={image} alt={post.title} className="post-thumb" width="640" height="440" />
   } else {
     return null
   }

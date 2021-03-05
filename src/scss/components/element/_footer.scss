@@ -4,25 +4,38 @@
   a {
     color: $primary-invert;
   }
+  ul {
+    li {
+      font-size: $size-7;
+    }
+  }
   dl {
     padding-top: $size-7;
+    dt {
+      text-transform: uppercase;
+      font-size: $size-7 * 0.75;
+      padding-top: $size-7 / 2;
+    }
+    dd {
+      font-size: $size-7;
+    }
   }
-  dt {
-    text-transform: uppercase;
-    font-size: $size-7 * 0.75;
-    padding-top: $size-7 / 2;
-  }
-  dd {
-    font-size: $size-7;
+  h3 {
+    &.company {
+      padding-bottom: $size-7;
+    }
   }
   .logo {
     i {
       font-size: $size-1;
     }
   }
-  .menu-list {
-    a {
-      color: $primary-invert;
+  .menu {
+    padding-bottom: $size-3;
+    .menu-list {
+      a {
+        color: $primary-invert;
+      }
     }
   }
   .social-follow {

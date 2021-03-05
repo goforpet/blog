@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { getSrc } from "gatsby-plugin-image"
 import { SEO } from "@pittica/gatsby-plugin-seo"
 
-import Body from "../element/body"
+import Wrapper from "../element/wrapper"
 
 export default function PostLayout({
   children,
@@ -45,7 +45,7 @@ export default function PostLayout({
         keywords={page.seo && page.seo.keywords ? page.seo.keywords : keywords}
         author={page.author ? page.author.name : null}
       />
-      <Body>{children}</Body>
+      <Wrapper>{children}</Wrapper>
     </React.Fragment>
   )
 }

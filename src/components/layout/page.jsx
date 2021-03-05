@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { SEO } from "@pittica/gatsby-plugin-seo"
 
-import Body from "../element/body"
+import Wrapper from "../element/wrapper"
 
 export default function PageLayout({
   children,
@@ -49,7 +49,7 @@ export default function PageLayout({
             : keywords
         }
       />
-      <Body>{children}</Body>
+      <Wrapper>{children}</Wrapper>
     </React.Fragment>
   )
 }
