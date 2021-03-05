@@ -83,10 +83,10 @@ module.exports = {
               }
             }
         }`,
-        serialize: ({ site, allSitePage }) =>
-          allSitePage.edges.map((edge) => {
+        serialize: ({ site: { siteMetadata: { siteUrl } }, allSitePage }) =>
+          allSitePage.edges.map(({ node }) => {
             return {
-              url: new URL(edge.node.path, site.siteMetadata.siteUrl).href,
+              url: new URL(node.path, siteUrl).href,
               changefreq: 'daily',
               priority: 0.7
             };
