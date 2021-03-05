@@ -1,0 +1,13 @@
+@import "../../variables";
+
+@import "~bulma/sass/utilities/mixins";
+
+.navbar-item {
+  padding: $size-7 $size-4;
+  text-transform: uppercase;
+  line-height: $size-3;
+  @include touch {
+    padding-left: $size-7;
+    display: block;
+  }
+}

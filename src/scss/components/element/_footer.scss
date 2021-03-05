@@ -1,0 +1,45 @@
+@import "../../variables";
+
+.footer {
+  a {
+    color: $primary-invert;
+  }
+  dl {
+    padding-top: $size-7;
+  }
+  dt {
+    text-transform: uppercase;
+    font-size: $size-7 * 0.75;
+    padding-top: $size-7 / 2;
+  }
+  dd {
+    font-size: $size-7;
+  }
+  .logo {
+    i {
+      font-size: $size-1;
+    }
+  }
+  .menu-list {
+    a {
+      color: $primary-invert;
+    }
+  }
+  .social-follow {
+    h3 {
+      font-size: $size-4;
+      text-transform: uppercase;
+    }
+    li {
+      display: inline-block;
+      padding-right: $size-6 / 2;
+      padding-top: $size-6;
+      i {
+        font-size: $size-2;
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}

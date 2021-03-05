@@ -1,0 +1,9 @@
+@import "../../variables";
+
+.product {
+    .product-action {
+        text-transform: uppercase;
+        text-align: right;
+        margin-top: $size-3;
+    }
+}

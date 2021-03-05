@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.cell-post {
+  background-size: cover;
+  justify-content: center;
+  a {
+    display: block;
+    min-height: 100%;
+    align-self: center;
+    background-color: $card-background-color;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .cell-body {
+      border: $size-7 solid $grey-lighter;
+      position: relative;
+      top: -$size-7 * 2;
+      padding-top: $size-1;
+    }
+    .title {
+      display: block;
+      font-size: $size-4;
+      text-transform: uppercase;
+      color: $primary;
+      padding: $size-7;
+      background-color: $card-background-color;
+    }
+    .subtitle {
+      display: block;
+      font-size: $size-5;
+      color: $dark;
+      padding: $size-7;
+      margin-bottom: $size-1;
+    }
+    &:hover {
+      .cell-body {
+        border-color: $info;
+      }
+    }
+  }
+}

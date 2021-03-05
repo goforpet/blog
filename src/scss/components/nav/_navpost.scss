@@ -1,0 +1,8 @@
+@import "../../variables";
+
+.navpost {
+  margin: ($size-1 * 2) 0;
+  .columns {
+    align-items: stretch;
+  }
+}

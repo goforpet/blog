@@ -1,0 +1,11 @@
+@import "../../variables";
+
+.caption {
+  text-transform: uppercase;
+  font-family: $family-secondary;
+  font-size: $size-6;
+  font-weight: $weight-bold;
+  .icon {
+    color: $info;
+  }
+}

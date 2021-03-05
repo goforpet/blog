@@ -1,0 +1,9 @@
+fragment Category on Category {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  name
+  slug
+}

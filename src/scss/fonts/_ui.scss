@@ -1,0 +1,32 @@
+@import "@pittica/scss-functions";
+
+@include font(goforpet);
+@include icon-family(goforpet);
+
+@include icon(goforpet, logo, "\e900");
+@include icon(goforpet, icon, "\e901");
+@include icon(goforpet, facebook, "\e902");
+@include icon(goforpet, instagram, "\e903");
+@include icon(goforpet, linkedin, "\e904");
+@include icon(goforpet, youtube, "\e905");
+@include icon(goforpet, twitter, "\e906");
+@include icon(goforpet, whatsapp, "\e907");
+@include icon(goforpet, telegram, "\e908");
+@include icon(goforpet, date, "\23f1");
+@include icon(goforpet, plus, "\2b");
+@include icon(goforpet, submit, "\1f5f8");
+@include icon(goforpet, cancel, "\1f5f4");
+@include icon(goforpet, quote-left, "\e90b");
+@include icon(goforpet, quote-right, "\e90e");
+@include icon(goforpet, mail, "\1f4e7");
+@include icon(goforpet, folder, "\1f4c2");
+@include icon(goforpet, tags, "\e911");
+@include icon(goforpet, tag, "\e912");
+@include icon(goforpet, attachment, "\1f4ce");
+@include icon(goforpet, link, "\1f517");
+@include icon(goforpet, images, "\1f5bc");
+@include icon(goforpet, share, "\e915");
+@include icon(goforpet, left, "\2bc7");
+@include icon(goforpet, up, "\2bc6");
+@include icon(goforpet, right, "\2bc8");
+@include icon(goforpet, down, "\2bc9");

@@ -1,0 +1,52 @@
+fragment Post on Post {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  slug
+  date
+  excerpt
+  coverImage {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      credits {
+        html
+        markdown
+        raw
+        text
+      }
+    }
+  }
+  content {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  tags
+  author {
+    ... on Author {
+      remoteTypeName: __typename
+      remoteId: id
+    }
+  }
+  categories {
+    ... on Category {
+      remoteTypeName: __typename
+      remoteId: id
+    }
+  }
+  seo {
+    ... on Seo {
+      remoteTypeName: __typename
+      remoteId: id
+    }
+  }
+  productId
+}

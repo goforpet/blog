@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.categories {
+  dd {
+    display: inline-block;
+    &:after {
+      content: "/";
+      font-size: $size-5;
+      position: relative;
+      top: $size-5 / 5;
+    }
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+    span {
+      font-family: $family-secondary;
+      font-size: $size-7;
+    }
+    .category-name {
+      font-family: $family-primary;
+      display: inline-block;
+      list-style-type: none;
+      font-size: $size-7;
+      padding: 0 ($size-7 / 3);
+      margin: 0 ($size-7 / 3) ($size-7 / 2) ($size-7 / 3);
+      position: relative;
+      z-index: 1;
+      &:after {
+        content: " ";
+        display: block;
+        position: relative;
+        z-index: -1;
+        top: -($size-7 / 5);
+        width: 100%;
+        border-bottom: ($size-7 / 5) solid $info;
+      }
+    }
+  }
+}

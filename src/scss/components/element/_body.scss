@@ -1,0 +1,8 @@
+@import "../../variables";
+
+.body {
+  overflow: hidden;
+  .main {
+    margin-top: ($navbar-height * 2) - $size-6;
+  }
+}

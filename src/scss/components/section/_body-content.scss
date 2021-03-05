@@ -1,0 +1,56 @@
+@import "../../variables";
+
+.body-content {
+  font-size: $size-5;
+  padding: $size-7;
+  padding-bottom: $size-1;
+  margin-bottom: $size-1;
+  a {
+    font-weight: $weight-semibold;
+    border-bottom: $size-7 / 5 solid $info;
+    &:hover {
+      border-bottom-color: $primary;
+    }
+  }
+  p {
+    margin: $size-7 0;
+  }
+  h1 {
+    font-size: $size-1;
+  }
+  h2 {
+    font-size: $size-2;
+  }
+  h3 {
+    font-size: $size-3;
+  }
+  h4 {
+    font-size: $size-4;
+  }
+  h5 {
+    font-size: $size-5;
+  }
+  h6 {
+    font-size: $size-6;
+  }
+  ul {
+    list-style-type: square;
+    padding-left: $size-4;
+    ul {
+      padding-left: $size-3;
+    }
+    ol {
+      padding-left: $size-3;
+    }
+  }
+  ol {
+    list-style-type: lower-alpha;
+    padding-left: $size-4;
+    ul {
+      padding-left: $size-3;
+    }
+    ol {
+      padding-left: $size-3;
+    }
+  }
+}

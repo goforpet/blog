@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.post-tags {
+  text-transform: uppercase;
+  dl {
+    dd {
+      display: inline-block;
+      &:after {
+        content: "/";
+      }
+      &:last-child {
+        &:after {
+          content: "";
+        }
+      }
+      span {
+        font-family: $family-secondary;
+        font-size: $size-7;
+      }
+      .tag-name {
+        font-family: $family-primary;
+        display: inline-block;
+        list-style-type: none;
+        font-size: $size-7;
+        padding: 0 ($size-7 / 3);
+        margin: 0 ($size-7 / 3) ($size-7 / 2) ($size-7 / 3);
+      }
+    }
+  }
+}

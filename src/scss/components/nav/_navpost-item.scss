@@ -1,0 +1,26 @@
+@import "../../variables";
+
+.navpost-item {
+  display: block;
+  background-size: cover;
+  background-color: $primary;
+  color: $primary-invert;
+  text-align: center;
+  span {
+    display: block;
+    font-size: $size-4;
+    padding: $size-2 $size-7;
+    min-height: $size-1 * 6;
+    i {
+      display: block;
+      font-size: $size-1;
+      margin-bottom: $size-1;
+    }
+    &.has-background {
+      background-color: $modal-background-background-color;
+    }
+  }
+  &:hover {
+    color: $info;
+  }
+}

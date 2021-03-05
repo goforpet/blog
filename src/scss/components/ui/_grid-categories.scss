@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.grid-categories {
+  .list {
+    position: relative;
+    top: -$size-7 / 4;
+    left: -$size-7 / 2;
+    text-transform: uppercase;
+  }
+}

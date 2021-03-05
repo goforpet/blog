@@ -1,0 +1,28 @@
+@import "../../variables";
+
+.cell-article {
+  border: 1px solid $grey-lighter;
+  height: 100%;
+  .title {
+    font-size: $size-4;
+    font-family: $family-primary;
+    text-transform: uppercase;
+    margin-bottom: $size-7 / 2;
+  }
+  .post-body {
+    padding: $size-7 / 2;
+    .post-link {
+      padding-top: $size-7;
+      a {
+        color: $primary;
+        text-transform: uppercase;
+        line-height: $size-4;
+        i {
+          font-size: $size-4;
+          position: relative;
+          top: $size-4 / 6;
+        }
+      }
+    }
+  }
+}

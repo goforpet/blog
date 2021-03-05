@@ -1,0 +1,27 @@
+@import "../../variables";
+
+@import "~bulma/sass/utilities/mixins";
+
+.navbar {
+  .navbar-logo {
+    text-align: center;
+    margin-right: $size-6;
+    color: $primary;
+    line-height: $size-3;
+    padding: $size-7 0 0 $size-7;
+    @include touch {
+      margin-left: $size-3;
+    }
+    i {
+      font-size: $size-1;
+    }
+  }
+  .navbar-burger {
+    padding: $size-3;
+  }
+  .navbar-menu {
+    @include touch {
+      box-shadow: none;
+    }
+  }
+}
