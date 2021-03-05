@@ -1,5 +1,11 @@
 # goforpet/blog
 
+![GitHub](https://img.shields.io/github/license/goforpet/blog)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/goforpet/blog/gatsby)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07596792-2f09-4354-a2f1-2c2d22694416/deploy-status)](https://app.netlify.com/sites/goforpet-blog/deploys)
+
+
+
 > The [blog](https://blog.goforpet.com/) of [Go For Pet](https://blog.goforpet.com/).
 
 ## Install
