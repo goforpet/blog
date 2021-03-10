@@ -6,6 +6,7 @@ import "../../scss/components/ui/_product.scss"
 export default function Product({ product }) {
   if (product && product.name) {
     const { name, imageData, excerpt, link } = product
+
     return (
       <div className="product">
         <div className="box">
@@ -15,7 +16,7 @@ export default function Product({ product }) {
                 <a href={link} title={name}>
                   <figure className="product-image">
                     <img
-                      src="https://www.goforpet.com/img/p/1/1/8/9/1189-medium_default.jpg"
+                      src={imageData.link}
                       alt={name}
                       className={classNames("image", "is-128x128")}
                     />

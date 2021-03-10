@@ -9,7 +9,7 @@ const ImageCredits = ({ image }) => {
         <div className="card-content">
           <React.Fragment>
             <Caption text="Crediti Immagine" icon="images" />
-            <p
+            <div
               dangerouslySetInnerHTML={{
                 __html: image.credits.html,
               }}
