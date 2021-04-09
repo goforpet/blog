@@ -16,8 +16,8 @@ const wrapPageElement = ({ element, props }) => {
   }
 };
 
-const componens = { table: Table };
+const components = { table: Table };
 
-const wrapRootElement = ({ element }) => <MDXProvider components={componens}>{element}</MDXProvider>;
+const wrapRootElement = ({ element }) => <MDXProvider components={components}>{element}</MDXProvider>;
 
 export { wrapPageElement, wrapRootElement };

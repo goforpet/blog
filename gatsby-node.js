@@ -6,7 +6,9 @@ const paginator = require('./src/utils/paginator');
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
   const { data } = await graphql(`
     query {
-      categories: allGraphCmsCategory {
+      categories: allGraphCmsCategory(
+        filter: { stage: { eq: PUBLISHED } }
+      ) {
         nodes {
           id
           stage
@@ -14,7 +16,9 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
           name
         }
       }
-      pages: allGraphCmsPage {
+      pages: allGraphCmsPage(
+        filter: { stage: { eq: PUBLISHED } }
+      ) {
         nodes {
           id
           content {
@@ -37,7 +41,10 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
           title
         }
       }
-      posts: allGraphCmsPost(sort: { fields: date, order: DESC }) {
+      posts: allGraphCmsPost(
+        sort: { fields: date, order: DESC }
+        filter: { stage: { eq: PUBLISHED } }
+      ) {
         edges {
           nextPost: next {
             id

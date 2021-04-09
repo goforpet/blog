@@ -1,32 +1,24 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Pagination from "../components/nav/pagination"
-import ListingGrid from "../components/section/listing-grid"
-import PageHeader from "../components/section/page-header"
+import Pagination from '../components/nav/pagination';
+import ListingGrid from '../components/section/listing-grid';
+import PageHeader from '../components/section/page-header';
 
-function Listing({
-  pageContext,
-  data: {
-    posts: { nodes },
-  },
-}) {
+function Listing({ pageContext, data: { posts: { nodes } } }) {
   return (
     <div>
-      <PageHeader
-        title={pageContext.page.name}
-        subtitle={`${pageContext.count} articoli`}
-      />
+      <PageHeader title={pageContext.page.name} subtitle={`${pageContext.count} articoli`} />
       <ListingGrid nodes={nodes} />
       <Pagination context={pageContext} />
     </div>
-  )
+  );
 }
 
 export const pageQuery = graphql`
   query BlogCategoryQuery($id: String!, $limit: Int!, $skip: Int!) {
     posts: allGraphCmsPost(
-      filter: { categories: { elemMatch: { id: { eq: $id } } } }
+      filter: { categories: { elemMatch: { id: { eq: $id }, stage: { eq: PUBLISHED } } } }
       sort: { fields: date, order: DESC }
       limit: $limit
       skip: $skip
@@ -40,12 +32,7 @@ export const pageQuery = graphql`
         coverImage {
           localFile {
             childImageSharp {
-              gatsbyImageData(
-                width: 640
-                height: 440
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+              gatsbyImageData(width: 640, height: 440, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
             }
           }
         }
@@ -56,6 +43,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Listing
+export default Listing;

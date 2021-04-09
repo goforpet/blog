@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { SEO } from "@pittica/gatsby-plugin-seo"
+import { Seo } from "@pittica/gatsby-plugin-seo"
 
 import Wrapper from "../element/wrapper"
 
@@ -25,7 +25,7 @@ export default function PageLayout({
 
   return (
     <React.Fragment>
-      <SEO
+      <Seo
         title={
           page
             ? page.seo && page.seo.title

@@ -47,7 +47,6 @@ export default class Navbar extends Component {
             </Link>
           </div>
           <div
-            id="navbar-top-menu"
             className={classNames("navbar-menu", {
               "is-active": this.state.isActive,
             })}

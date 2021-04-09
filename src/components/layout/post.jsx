@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { getSrc } from "gatsby-plugin-image"
-import { SEO } from "@pittica/gatsby-plugin-seo"
+import { Seo } from "@pittica/gatsby-plugin-seo"
 
 import Wrapper from "../element/wrapper"
 
@@ -33,7 +33,7 @@ export default function PostLayout({
 
   return (
     <React.Fragment>
-      <SEO
+      <Seo
         postData={page}
         image={image}
         isBlogPost={true}

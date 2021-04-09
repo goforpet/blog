@@ -1,29 +1,25 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Pagination from "../components/nav/pagination"
-import ListingGrid from "../components/section/listing-grid"
-import PageHeader from "../components/section/page-header"
+import Pagination from '../components/nav/pagination';
+import ListingGrid from '../components/section/listing-grid';
+import PageHeader from '../components/section/page-header';
 
-function Articles({
-  pageContext,
-  data: {
-    posts: { nodes },
-  },
-}) {
+function Articles({ pageContext, data: { posts: { nodes } } }) {
   return (
     <div>
       <PageHeader title="Articoli" subtitle={`${pageContext.count} articoli`} />
       <ListingGrid nodes={nodes} />
       <Pagination context={pageContext} />
     </div>
-  )
+  );
 }
 
 export const pageQuery = graphql`
   query BlogArticlesQuery($limit: Int!, $skip: Int!) {
     posts: allGraphCmsPost(
       sort: { fields: date, order: DESC }
+      filter: { stage: { eq: PUBLISHED } }
       limit: $limit
       skip: $skip
     ) {
@@ -36,12 +32,7 @@ export const pageQuery = graphql`
         coverImage {
           localFile {
             childImageSharp {
-              gatsbyImageData(
-                width: 640
-                height: 440
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+              gatsbyImageData(width: 640, height: 440, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
             }
           }
         }
@@ -52,6 +43,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Articles
+export default Articles;
