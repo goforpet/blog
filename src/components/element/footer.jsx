@@ -1,9 +1,10 @@
-import React from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import React from 'react';
+import classnames from 'classnames';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 
-import FooterTax from "../ui/footer-tax"
+import FooterTax from '../ui/footer-tax';
 
-import "../../scss/components/element/_footer.scss"
+import '../../scss/components/element/_footer.scss';
 
 export default function Footer() {
   const { site, siteBuildMetadata, pages } = useStaticQuery(
@@ -52,40 +53,35 @@ export default function Footer() {
         }
       }
     `
-  )
+  );
 
-  const owner = site.siteMetadata.organization
-  const seo = siteBuildMetadata.fields.seo
-  let socials = []
+  const owner = site.siteMetadata.organization;
+  const seo = siteBuildMetadata.fields.seo;
+  let socials = [];
 
   if (seo.socials.instagram.username) {
     socials.push({
-      social: "Instagram",
-      url: new URL(seo.socials.instagram.username, "https://www.instagram.com/")
-        .href,
-      icon: "instagram",
-    })
+      social: 'Instagram',
+      url: new URL(seo.socials.instagram.username, 'https://www.instagram.com/').href,
+      icon: 'instagram'
+    });
   }
 
   if (seo.socials.facebook.page) {
     socials.push({
-      social: "Facebook",
-      url: new URL(seo.socials.facebook.page, "https://www.facebook.com/").href,
-      icon: "facebook",
-    })
+      social: 'Facebook',
+      url: new URL(seo.socials.facebook.page, 'https://www.facebook.com/').href,
+      icon: 'facebook'
+    });
   }
 
   return (
-    <footer
-      className="footer"
-      itemScope
-      itemType="http://schema.org/Organization"
-    >
+    <footer className="footer" itemScope itemType="http://schema.org/Organization">
       <div className="container">
         <div className="columns">
-          <div className="column is-one-third">
+          <div className={classnames('column', 'is-one-third')}>
             <div className="logo">
-              <i className="icon-goforpet-logo"></i>
+              <i className="icon-goforpet-logo" />
             </div>
             <h3 className="company" itemProp="legalName">
               {owner.company}
@@ -94,7 +90,7 @@ export default function Footer() {
               <ul itemProp="location">
                 <li itemProp="streetAddress">{owner.address}</li>
                 <li>
-                  <span itemProp="postalCode">{owner.zipCode}</span>{" "}
+                  <span itemProp="postalCode">{owner.zipCode}</span>{' '}
                   <span itemProp="addressLocality">{owner.city}</span> (
                   <span itemProp="addressRegion">{owner.province}</span>)
                 </li>
@@ -103,19 +99,15 @@ export default function Footer() {
             </div>
             <FooterTax {...owner} />
           </div>
-          <div className="column is-one-third">
+          <div className={classnames('column', 'is-one-third')}>
             {owner.email && (
               <aside className="menu">
                 <p className="menu-label">Note Legali</p>
                 <ul className="menu-list">
                   <li itemProp="contactPoint">
-                    <a
-                      href={"mailto:" + owner.email}
-                      itemProp="email"
-                      title="E-Mail"
-                    >
+                    <a href={'mailto:' + owner.email} itemProp="email" title="E-Mail">
                       <span className="icon">
-                        <i className="icon-goforpet-mail"></i>
+                        <i className="icon-goforpet-mail" />
                       </span>
                       {owner.email}
                     </a>
@@ -128,32 +120,32 @@ export default function Footer() {
                 <p className="menu-label">Note Legali</p>
                 <ul className="menu-list">
                   {pages.nodes.map((page, index) => {
-                    const slug = "/pages/" + page.slug
+                    const slug = '/pages/' + page.slug;
 
                     return (
                       <li key={index}>
                         <Link to={slug}>{page.title}</Link>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </aside>
             )}
           </div>
           {socials && (
-            <div className="column is-one-third social-follow">
+            <div className={classnames('column', 'is-one-third', 'social-follow')}>
               <h3>Seguici</h3>
               <ul>
                 {socials.map((social, index) => {
                   return (
                     <li key={index}>
                       <a href={social.url}>
-                        <i className={"icon-goforpet-" + social.icon}>
+                        <i className={'icon-goforpet-' + social.icon}>
                           <span>{social.social}</span>
                         </i>
                       </a>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </div>
@@ -161,5 +153,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
 import "../../scss/components/ui/_post-thumb.scss"
 
 export default function PostThumb({ post }) {

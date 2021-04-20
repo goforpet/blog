@@ -1,0 +1,54 @@
+@import "../../variables";
+
+@import "~bulma/sass/utilities/mixins";
+
+.search-result {
+  width: 100%;
+  margin-top: $navbar-height;
+  background-color: $primary;
+  color: $primary-invert;
+  padding: 2%;
+  mark {
+    background-color: $yellow;
+    padding: 0 ($size-7 / 2);
+  }
+  .hit-count {
+    .title {
+      color: $primary-invert;
+      padding: $size-1 $size-4;
+    }
+  }
+  .hit {
+    max-width: 320px;
+    .hit-snippet {
+      display: block;
+      margin: 0 auto;
+      max-width: 320px;
+      border: $size-7 / 2 solid $yellow;
+      border-top: none;
+      position: relative;
+      top: -($size-7 / 2);
+      z-index: 0;
+      font-size: $size-7;
+      color: $primary-invert;
+      padding: $size-2 $size-7;
+      .hit-thumb {
+        position: relative;
+        z-index: 1;
+      }
+      a {
+        font-size: $size-6;
+        color: $primary-invert;
+      }
+      .title {
+        color: $primary-invert;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .search-poweredby {
+    font-size: $size-7 * 0.75;
+    margin-top: $size-5;
+    text-align: right;
+  }
+}

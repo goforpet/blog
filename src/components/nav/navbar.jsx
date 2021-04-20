@@ -1,61 +1,100 @@
-import React, { Component } from "react"
-import { Link } from "gatsby"
-import classNames from "classnames"
+import React, { useState } from 'react';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import classnames from 'classnames';
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch } from 'react-instantsearch-dom';
+import SearchBox from '../search/search-box';
+import SearchResult from '../search/search-result';
 
-import NavbarStart from "./navbar-start"
-import NavbarEnd from "./navbar-end"
+import NavbarStart from './navbar-start';
 
-import "../../scss/components/nav/_navbar.scss"
+import '../../scss/components/nav/_navbar.scss';
 
-export default class Navbar extends Component {
-  state = {
-    isActive: false,
-  }
+export default function Navbar() {
+  const [ isActive, setActive ] = useState(false);
+  const [ query, setQuery ] = useState();
+  const [ hasFocus, setFocus ] = useState(false);
+  const { sitePlugin: { pluginOptions: { indexName, appId, apiSearchKey } } } = useStaticQuery(
+    graphql`
+      query {
+        sitePlugin(name: { eq: "gatsby-plugin-algolia" }) {
+          pluginOptions {
+            indexName
+            appId
+            apiSearchKey
+          }
+        }
+      }
+    `
+  );
+  const algoliaClient = algoliasearch(appId, apiSearchKey);
 
-  handleClick = e => {
-    e.preventDefault()
-    this.setState(state => ({ isActive: !state.isActive }))
+  const searchClient = {
+    search(requests) {
+      if (requests.every(({ params }) => !params.query)) {
+        return Promise.resolve({
+          results: requests.map(() => ({
+            hits: [],
+            nbHits: 0,
+            nbPages: 0,
+            processingTimeMS: 0
+          }))
+        });
+      }
 
-    return false
-  }
+      return algoliaClient.search(requests);
+    }
+  };
 
-  render() {
-    return (
-      <nav
-        className={classNames("navbar", "is-fixed-top", "is-light")}
-        role="navigation"
-        aria-label="main navigation"
-      >
+  const handleClick = (e) => {
+    e.preventDefault();
+    setActive(!isActive);
+
+    return false;
+  };
+
+  return (
+    <InstantSearch
+      searchClient={searchClient}
+      indexName={indexName}
+      onSearchStateChange={({ query }) => setQuery(query)}
+    >
+      <nav className={classnames('navbar', 'is-fixed-top', 'is-light')} role="navigation" aria-label="main navigation">
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-logo">
-              <i className="icon-goforpet-logo"></i>
+              <i className="icon-goforpet-logo" />
             </Link>
             <Link
               to="/"
-              onClick={this.handleClick}
+              onClick={handleClick}
               role="button"
-              className={classNames("navbar-burger", "burger", {
-                "is-active": this.state.isActive,
+              className={classnames('navbar-burger', 'burger', {
+                'is-active': isActive
               })}
               aria-label="menu"
               aria-expanded="false"
             >
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
             </Link>
           </div>
           <div
-            className={classNames("navbar-menu", {
-              "is-active": this.state.isActive,
+            className={classnames('navbar-menu', {
+              'is-active': isActive
             })}
           >
             <NavbarStart />
-            <NavbarEnd />
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <SearchBox onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+              </div>
+            </div>
           </div>
         </div>
       </nav>
-    )
-  }
+      <SearchResult show={query && query.length > 0 && hasFocus} index={indexName} />
+    </InstantSearch>
+  );
 }

@@ -94,6 +94,64 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_ADMIN_KEY,
+        apiSearchKey: process.env.ALGOLIA_API_SEARCH_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME,
+        queries: [
+          {
+            query: `{
+              pages: allGraphCmsPost(filter: {stage: {eq: PUBLISHED}}) {
+                nodes {
+                  objectID: id
+                  slug
+                  tags
+                  internal {
+                    contentDigest
+                  }
+                  excerpt
+                  title
+                  coverImage {
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData(
+                          width: 320
+                          height: 320
+                          placeholder: BLURRED
+                          formats: [AUTO, WEBP, AVIF]
+                        )
+                      }
+                    }
+                  }
+                }
+              }
+            }`,
+            transformer: ({ data: { pages: { nodes } } }) =>
+              nodes.map(
+                ({ objectID, slug, title, excerpt, tags, internal: { contentDigest }, coverImage: { localFile } }) => ({
+                  objectID,
+                  slug,
+                  title,
+                  excerpt,
+                  tags,
+                  contentDigest,
+                  image: localFile
+                })
+              ),
+            settings: {
+              attributesToSnippet: [ 'path:5', 'contentDigest', 'title', 'tags', 'excerpt', 'image' ],
+              indexLanguages: [ process.env.LOCALE ],
+              queryLanguages: [ process.env.LOCALE ],
+              searchableAttributes: [ 'title', 'tags', 'excerpt', 'slug' ]
+            }
+          }
+        ],
+        matchFields: [ 'contentDigest', 'slug' ]
+      }
+    },
+    {
       resolve: `gatsby-source-graphcms`,
       options: {
         endpoint: process.env.GRAPHCMS_ENDPOINT,

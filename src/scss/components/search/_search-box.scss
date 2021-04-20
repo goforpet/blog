@@ -1,0 +1,12 @@
+@import "../../variables";
+
+.search-box {
+  .control {
+    .icon {
+      &.cancel {
+        cursor: pointer;
+        pointer-events: all;
+      }
+    }
+  }
+}
