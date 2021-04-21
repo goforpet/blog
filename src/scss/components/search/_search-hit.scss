@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.search-hit {
+  max-width: 320px;
+  .hit-snippet {
+    display: block;
+    margin: 0 auto;
+    max-width: 320px;
+    border: $size-7 / 2 solid $yellow;
+    border-top: none;
+    position: relative;
+    top: -($size-7 / 2);
+    z-index: 0;
+    font-size: $size-7;
+    color: $primary-invert;
+    padding: $size-2 $size-7;
+    .hit-thumb {
+      position: relative;
+      z-index: 1;
+    }
+    a {
+      font-size: $size-6;
+      color: $primary-invert;
+    }
+    .title {
+      color: $primary-invert;
+      text-transform: uppercase;
+    }
+  }
+}

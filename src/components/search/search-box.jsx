@@ -15,8 +15,13 @@ export default connectSearchBox(({ refine, currentRefinement, onFocus }) => {
             placeholder="Cerca"
             aria-label="search"
             onChange={(e) => refine(e.target.value)}
-            value={currentRefinement}
             onFocus={onFocus}
+            onKeyDown={(e) => {
+              if (e.key.toLowerCase() === 'escape') {
+                refine('');
+              }
+            }}
+            value={currentRefinement}
           />
           <span className={classnames('icon', 'is-small', 'is-left')}>
             <i className="icon-goforpet-search" />
