@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 export default function PageHeader({ title, subtitle }) {
   return (
@@ -12,5 +12,5 @@ export default function PageHeader({ title, subtitle }) {
         </section>
       </div>
     </header>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react';
 
-import Caption from "./caption"
+import Caption from './caption';
 
-import "../../scss/components/ui/_post-date.scss"
+import '../../scss/components/ui/_post-date.scss';
 
 const PostDate = ({ date }) => (
   <div className="post-date">
@@ -11,6 +11,6 @@ const PostDate = ({ date }) => (
       {date}
     </time>
   </div>
-)
+);
 
-export default PostDate
+export default PostDate;

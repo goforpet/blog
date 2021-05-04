@@ -1,9 +1,19 @@
 @import "../../variables";
 
 .product {
-    .product-action {
-        text-transform: uppercase;
-        text-align: right;
-        margin-top: $size-3;
-    }
+  background-color: $primary-invert;
+  .subtitle {
+    font-weight: $weight-bold;
+    font-size: $size-4;
+  }
+  .image {
+    padding-top: $size-7;
+  }
+  .content {
+    font-size: $size-5;
+  }
+  .product-action {
+    text-transform: uppercase;
+    margin-top: $size-3;
+  }
 }

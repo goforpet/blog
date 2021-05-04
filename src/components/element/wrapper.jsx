@@ -1,17 +1,17 @@
-import React from "react"
-import { useLocation } from "@reach/router"
-import { initializeAndTrack } from "gatsby-plugin-gdpr-cookies"
-import { consent } from "@pittica/gatsby-plugin-cookiehub"
+import React from 'react';
+import { useLocation } from '@reach/router';
+import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
+import { consent } from '@pittica/gatsby-plugin-cookiehub';
 
-import Header from "./header"
-import Footer from "./footer"
+import Header from './header';
+import Footer from './footer';
 
-import "../../scss/components/element/_wrapper.scss"
+import '../../scss/components/element/_wrapper.scss';
 
 export default function Wrapper({ children }) {
-  const location = useLocation()
+  const location = useLocation();
 
-  consent(() => initializeAndTrack(location))
+  consent(() => initializeAndTrack(location));
 
   return (
     <div className="wrapper">
@@ -19,5 +19,5 @@ export default function Wrapper({ children }) {
       <main className="main">{children}</main>
       <Footer />
     </div>
-  )
+  );
 }

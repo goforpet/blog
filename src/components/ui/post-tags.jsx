@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react';
 
-import Caption from "./caption"
+import Caption from './caption';
 
-import "../../scss/components/ui/_post-tags.scss"
+import '../../scss/components/ui/_post-tags.scss';
 
 const PostTags = ({ tags }) => {
   if (tags && tags.length > 0) {
@@ -17,14 +17,14 @@ const PostTags = ({ tags }) => {
                   {tag}
                 </span>
               </dd>
-            )
+            );
           })}
         </dl>
       </div>
-    )
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 
-export default PostTags
+export default PostTags;

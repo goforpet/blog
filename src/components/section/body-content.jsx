@@ -1,7 +1,7 @@
-import React from "react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import React from 'react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import "../../scss/components/section/_body-content.scss"
+import '../../scss/components/section/_body-content.scss';
 
 export default function BodyContent({ children }) {
   return (
@@ -12,5 +12,5 @@ export default function BodyContent({ children }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

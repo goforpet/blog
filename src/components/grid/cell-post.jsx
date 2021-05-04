@@ -1,19 +1,15 @@
-import React from "react"
-import { Link } from "gatsby"
-import classNames from "classnames"
+import React from 'react';
+import { Link } from 'gatsby';
+import classNames from 'classnames';
 
-import PostThumb from "../ui/post-thumb"
+import PostThumb from '../ui/post-thumb';
 
-import "../../scss/components/grid/_cell-post.scss"
+import '../../scss/components/grid/_cell-post.scss';
 
 export default function CellPost({ post, className }) {
   return (
     <article
-      className={classNames(
-        "cell-post",
-        { "has-excerpt": post.excerpt },
-        className
-      )}
+      className={classNames('cell-post', { 'has-excerpt': post.excerpt }, className)}
       itemScope
       itemType="http://schema.org/Article"
     >
@@ -27,5 +23,5 @@ export default function CellPost({ post, className }) {
         </div>
       </Link>
     </article>
-  )
+  );
 }

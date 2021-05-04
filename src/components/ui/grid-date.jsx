@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react';
 
 const PostDate = ({ date }) => (
   <div className="grid-date">
     <span className="icon-text">
       <span className="icon">
-        <i className="icon-goforpet-date"></i>
+        <i className="icon-goforpet-date" />
       </span>
       <span>
         <time dateTime={date} itemProp="datePublished">
@@ -13,6 +13,6 @@ const PostDate = ({ date }) => (
       </span>
     </span>
   </div>
-)
+);
 
-export default PostDate
+export default PostDate;

@@ -1,8 +1,8 @@
-import React from "react"
-import classNames from "classnames"
+import React from 'react';
+import classNames from 'classnames';
 
-import PostTags from "../ui/post-tags"
-import PostCategories from "../ui/post-categories"
+import PostTags from '../ui/post-tags';
+import PostCategories from '../ui/post-categories';
 
 export default function PostData({ post }) {
   if (post.categories || post.tags) {
@@ -10,8 +10,9 @@ export default function PostData({ post }) {
       <section className="section">
         <div className="container">
           <div className="columns">
-            {post.categories && post.categories.length > 0 && (
-              <div className={classNames("column", "is-one-half")}>
+            {post.categories &&
+            post.categories.length > 0 && (
+              <div className={classNames('column', 'is-one-half')}>
                 <div className="card">
                   <div className="card-content">
                     <PostCategories categories={post.categories} />
@@ -19,8 +20,9 @@ export default function PostData({ post }) {
                 </div>
               </div>
             )}
-            {post.tags && post.tags.length > 0 && (
-              <div className={classNames("column", "is-one-half")}>
+            {post.tags &&
+            post.tags.length > 0 && (
+              <div className={classNames('column', 'is-one-half')}>
                 <div className="card">
                   <div className="card-content">
                     <PostTags tags={post.tags} />
@@ -31,8 +33,8 @@ export default function PostData({ post }) {
           </div>
         </div>
       </section>
-    )
+    );
   } else {
-    return null
+    return null;
   }
 }
