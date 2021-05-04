@@ -83,6 +83,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
               slug
             }
             tags
+            updatedAt
           }
           previousPost: previous {
             id

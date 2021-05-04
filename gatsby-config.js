@@ -66,8 +66,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: '/sitemap.xml',
-        exclude: [],
         query: `
           {
             site {
@@ -76,21 +74,52 @@ module.exports = {
               }
             }
             allSitePage {
-              edges {
-                node {
-                  path
+              nodes {
+                path
+                context {
+                  page {
+                    updatedAt
+                  }
+                  type
                 }
               }
             }
         }`,
-        serialize: ({ site: { siteMetadata: { siteUrl } }, allSitePage }) =>
-          allSitePage.edges.map(({ node }) => {
-            return {
-              url: new URL(node.path, siteUrl).href,
+        resolvePages: ({ site: { siteMetadata: { siteUrl } }, allSitePage: { nodes } }) =>
+          nodes.map(({ path, context }) => {
+            const page = {
+              path: new URL(path, siteUrl).href,
               changefreq: 'daily',
-              priority: 0.7
+              priority: 0.5,
+              lastmod: null
             };
-          })
+
+            if (context) {
+              if (context.page && context.page.updatedAt) {
+                page.lastmod = context.page.updatedAt;
+              }
+
+              if (context.type) {
+                switch (context.type) {
+                  case 'post':
+                    page.changefreq = 'monthly';
+                    page.priority = 0.7;
+                    break;
+                  case 'page':
+                    page.priority = 0.8;
+                    break;
+                  default:
+                    page.priority = path === '/' ? 1.0 : 0.5;
+                    break;
+                }
+              }
+            }
+
+            return page;
+          }),
+        serialize: ({ path, changefreq, priority, lastmod }) => {
+          return { url: path, changefreq, priority, lastmod };
+        }
       }
     },
     {
