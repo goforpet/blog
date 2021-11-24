@@ -1,11 +1,16 @@
 @import "../../variables";
 
+@import "~bulma/sass/utilities/mixins";
+
 .search-result {
   width: 100%;
   margin-top: $navbar-height;
   background-color: $primary;
   color: $primary-invert;
   padding: 2%;
+  @include touch {
+    margin-top: $navbar-height * 2;
+  }
   mark {
     background-color: $yellow;
     padding: 0 ($size-7 / 2);

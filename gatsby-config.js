@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
@@ -6,7 +6,7 @@ module.exports = {
     description: process.env.DESCRIPTION,
     locale: {
       language: process.env.LOCALE,
-      culture: process.env.CULTURE
+      culture: process.env.CULTURE,
     },
     siteUrl: process.env.URL,
     author: process.env.AUTHOR,
@@ -14,7 +14,7 @@ module.exports = {
       company: process.env.ORG_COMPANY,
       address: process.env.ORG_ADDRESS_STREET,
       url: process.env.URL,
-      logo: process.env.URL + '/logo.jpg',
+      logo: process.env.URL + "/logo.jpg",
       zipCode: process.env.ORG_ADDRESS_ZIPCODE,
       city: process.env.ORG_ADDRESS_CITY,
       province: process.env.ORG_ADDRESS_PROVINCE,
@@ -22,11 +22,11 @@ module.exports = {
       email: process.env.EMAIL,
       taxId: process.env.ORG_TAX_ID,
       vatId: process.env.ORG_VAT_ID,
-      registryId: process.env.ORG_REGISTRY_ID
+      registryId: process.env.ORG_REGISTRY_ID,
     },
-    keywords: [ '' ],
+    keywords: [""],
     shop: process.env.SHOP_URL,
-    newsletter: process.env.NEWSLETTER_URL
+    newsletter: process.env.NEWSLETTER_URL,
   },
   plugins: [
     `gatsby-plugin-mdx`,
@@ -40,33 +40,33 @@ module.exports = {
       options: {
         googleAnalytics: {
           trackingId: process.env.GOOGLE_ANALYTICS_ID,
-          cookieName: 'goforpet-gdpr-analytics',
+          cookieName: "goforpet-gdpr-analytics",
           anonymize: true,
-          allowAdFeatures: false
+          allowAdFeatures: false,
         },
         facebookPixel: {
           pixelId: process.env.FACEBOOK_PIXEL,
-          cookieName: 'goforpet-gdpr-marketing'
+          cookieName: "goforpet-gdpr-marketing",
         },
-        environments: [ 'production', 'development' ]
-      }
+        environments: ["production", "development"],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: process.env.TITLE,
         short_name: process.env.TITLE,
-        start_url: '/',
+        start_url: "/",
         background_color: process.env.COLOR_BACKGROUND,
         theme_color: process.env.COLOR_PRIMARY,
-        display: 'minimal-ui',
-        icon: 'static/icon.png'
-      }
+        display: "minimal-ui",
+        icon: "static/icon.png",
+      },
     },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: '/./',
+        output: "/./",
         query: `
           {
             site {
@@ -86,42 +86,47 @@ module.exports = {
               }
             }
         }`,
-        resolvePages: ({ site: { siteMetadata: { siteUrl } }, allSitePage: { nodes } }) =>
+        resolvePages: ({
+          site: {
+            siteMetadata: { siteUrl },
+          },
+          allSitePage: { nodes },
+        }) =>
           nodes.map(({ path, context }) => {
             const page = {
               path: new URL(path, siteUrl).href,
-              changefreq: 'daily',
+              changefreq: "daily",
               priority: 0.5,
-              lastmod: null
-            };
+              lastmod: null,
+            }
 
             if (context) {
               if (context.page && context.page.updatedAt) {
-                page.lastmod = context.page.updatedAt;
+                page.lastmod = context.page.updatedAt
               }
 
               if (context.type) {
                 switch (context.type) {
-                  case 'post':
-                    page.changefreq = 'monthly';
-                    page.priority = 0.7;
-                    break;
-                  case 'page':
-                    page.priority = 0.8;
-                    break;
+                  case "post":
+                    page.changefreq = "monthly"
+                    page.priority = 0.7
+                    break
+                  case "page":
+                    page.priority = 0.8
+                    break
                   default:
-                    page.priority = path === '/' ? 1.0 : 0.5;
-                    break;
+                    page.priority = path === "/" ? 1.0 : 0.5
+                    break
                 }
               }
             }
 
-            return page;
+            return page
           }),
         serialize: ({ path, changefreq, priority, lastmod }) => {
-          return { url: path, changefreq, priority, lastmod };
-        }
-      }
+          return { url: path, changefreq, priority, lastmod }
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-algolia`,
@@ -158,28 +163,47 @@ module.exports = {
                 }
               }
             }`,
-            transformer: ({ data: { pages: { nodes } } }) =>
+            transformer: ({
+              data: {
+                pages: { nodes },
+              },
+            }) =>
               nodes.map(
-                ({ objectID, slug, title, excerpt, tags, internal: { contentDigest }, coverImage: { localFile } }) => ({
+                ({
+                  objectID,
+                  slug,
+                  title,
+                  excerpt,
+                  tags,
+                  internal: { contentDigest },
+                  coverImage: { localFile },
+                }) => ({
                   objectID,
                   slug,
                   title,
                   excerpt,
                   tags,
                   contentDigest,
-                  image: localFile
+                  image: localFile,
                 })
               ),
             settings: {
-              attributesToSnippet: [ 'path:5', 'contentDigest', 'title', 'tags', 'excerpt', 'image' ],
-              indexLanguages: [ process.env.LOCALE ],
-              queryLanguages: [ process.env.LOCALE ],
-              searchableAttributes: [ 'title', 'tags', 'excerpt', 'slug' ]
-            }
-          }
+              attributesToSnippet: [
+                "path:5",
+                "contentDigest",
+                "title",
+                "tags",
+                "excerpt",
+                "image",
+              ],
+              indexLanguages: [process.env.LOCALE],
+              queryLanguages: [process.env.LOCALE],
+              searchableAttributes: ["title", "tags", "excerpt", "slug"],
+            },
+          },
         ],
-        matchFields: [ 'contentDigest', 'slug' ]
-      }
+        matchFields: ["contentDigest", "slug"],
+      },
     },
     {
       resolve: `gatsby-source-graphcms`,
@@ -188,12 +212,12 @@ module.exports = {
         token: process.env.GRAPHCMS_TOKEN,
         buildMarkdownNodes: true,
         downloadLocalImages: true,
-        locales: [ process.env.LOCALE ]
-      }
+        locales: [process.env.LOCALE],
+      },
     },
     `gatsby-transformer-sharp`,
     {
-      resolve: 'gatsby-plugin-feed',
+      resolve: "gatsby-plugin-feed",
       options: {
         query: `
           {
@@ -209,17 +233,24 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allGraphCmsPost: { nodes } } }) => {
-              return nodes.map(({ title, excerpt, publishedAt, slug, content: { html } }) => {
-                return {
-                  title,
-                  description: excerpt,
-                  date: publishedAt,
-                  url: new URL(slug, site.siteMetadata.siteUrl).href,
-                  guid: new URL(slug, site.siteMetadata.siteUrl).href,
-                  custom_elements: [ { 'content:encoded': html } ]
-                };
-              });
+            serialize: ({
+              query: {
+                site,
+                allGraphCmsPost: { nodes },
+              },
+            }) => {
+              return nodes.map(
+                ({ title, excerpt, publishedAt, slug, content: { html } }) => {
+                  return {
+                    title,
+                    description: excerpt,
+                    date: publishedAt,
+                    url: new URL(slug, site.siteMetadata.siteUrl).href,
+                    guid: new URL(slug, site.siteMetadata.siteUrl).href,
+                    custom_elements: [{ "content:encoded": html }],
+                  }
+                }
+              )
             },
             query: `
               {
@@ -237,51 +268,58 @@ module.exports = {
                 }
               }
             `,
-            output: '/rss.xml',
-            title: process.env.TITLE
-          }
-        ]
-      }
+            output: "/rss.xml",
+            title: process.env.TITLE,
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-page-progress`,
       options: {
         includePaths: [],
-        excludePaths: [ '/', { regex: '^/pages' }, { regex: '^/articles' }, { regex: '^/categories' } ],
+        excludePaths: [
+          "/",
+          { regex: "^/pages" },
+          { regex: "^/articles" },
+          { regex: "^/categories" },
+        ],
         height: 3,
-        color: process.env.COLOR_PRIMARY
-      }
+        color: process.env.COLOR_PRIMARY,
+      },
     },
     {
       resolve: `@pittica/gatsby-plugin-seo`,
       options: {
-        image: '/share.jpg',
+        image: "/share.jpg",
         socials: {
           facebook: {
             app: process.env.FACEBOOK_APP,
-            page: process.env.FACEBOOK_PAGE
+            page: process.env.FACEBOOK_PAGE,
+            icon: "icon-goforpet-facebook",
           },
           instagram: {
-            username: process.env.INSTAGRAM_USERNAME
-          }
-        }
-      }
+            username: process.env.INSTAGRAM_USERNAME,
+            icon: "icon-goforpet-instagram",
+          },
+        },
+      },
     },
     {
       resolve: `@pittica/gatsby-plugin-cookiehub`,
       options: {
-        code: '4dd3307e',
-        debug: (process.env.ENV || process.env.NODE_ENV) !== 'production',
-        cookie: 'goforpet-gdpr'
-      }
+        code: "4dd3307e",
+        debug: (process.env.ENV || process.env.NODE_ENV) !== "production",
+        cookie: "goforpet-gdpr",
+      },
     },
     {
       resolve: `@pittica/gatsby-source-prestashop`,
       options: {
         url: process.env.SHOP_URL,
         key: process.env.SHOP_KEY,
-        locale: process.env.LOCALE
-      }
-    }
-  ]
-};
+        locale: process.env.LOCALE,
+      },
+    },
+  ],
+}

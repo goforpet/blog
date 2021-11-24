@@ -18,6 +18,9 @@
   }
   .navbar-burger {
     padding: $size-3;
+    &.burger {
+      margin-left: 0;
+    }
   }
   .navbar-menu {
     @include touch {

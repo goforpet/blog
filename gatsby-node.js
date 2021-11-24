@@ -1,6 +1,7 @@
+require('dotenv').config();
+
 const path = require('path');
 const moment = require('moment');
-require('dotenv').config();
 const paginator = require('./src/utils/paginator');
 
 exports.createPages = async ({ actions: { createPage }, graphql }) => {

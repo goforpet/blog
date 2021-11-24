@@ -2,6 +2,10 @@
 
 .search-hit {
   max-width: 320px;
+  .hit-thumb {
+    position: relative;
+    z-index: 1;
+  }
   .hit-snippet {
     display: block;
     margin: 0 auto;
@@ -14,10 +18,6 @@
     font-size: $size-7;
     color: $primary-invert;
     padding: $size-2 $size-7;
-    .hit-thumb {
-      position: relative;
-      z-index: 1;
-    }
     a {
       font-size: $size-6;
       color: $primary-invert;
