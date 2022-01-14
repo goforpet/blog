@@ -1,5 +1,5 @@
 import React from "react"
-import classnames from "classnames"
+import classNames from "classnames"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { SocialFollow } from "@pittica/gatsby-plugin-seo"
 import { Credits } from "@pittica/art"
@@ -56,7 +56,7 @@ export default function Footer() {
     >
       <div className="container">
         <div className="columns">
-          <div className={classnames("column", "is-one-third")}>
+          <div className={classNames("column", "is-one-third")}>
             <div className="logo">
               <i className="icon-goforpet-logo" />
             </div>
@@ -76,7 +76,7 @@ export default function Footer() {
             </div>
             <FooterTax {...owner} />
           </div>
-          <div className={classnames("column", "is-one-third")}>
+          <div className={classNames("column", "is-one-third")}>
             {owner.email && (
               <aside className="menu">
                 <p className="menu-label">Contatti</p>
@@ -111,14 +111,14 @@ export default function Footer() {
               </aside>
             )}
           </div>
-          <div className={classnames("column", "is-one-third")}>
+          <div className={classNames("column", "is-one-third")}>
             <h3 className="title">Seguici</h3>
             <SocialFollow />
           </div>
         </div>
         <div className="columns">
           <div className={classNames("column", "is-three-fifths")}>
-            © {new Date().getFullYear()}, {organization.company}
+            © {new Date().getFullYear()}, {owner.company}
           </div>
           <div className={classNames("column", "is-two-fifths")}>
             <Credits />

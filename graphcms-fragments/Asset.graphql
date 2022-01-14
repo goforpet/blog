@@ -11,22 +11,56 @@ fragment Asset on Asset {
   width
   size
   mimeType
+  credits {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
   coverImagePost {
     ... on Post {
       remoteTypeName: __typename
       remoteId: id
+      locale
+      stage
     }
   }
   authorAvatar {
     ... on Author {
       remoteTypeName: __typename
       remoteId: id
+      locale
+      stage
     }
   }
-  seoImage {
-    ... on Seo {
+  scheduledIn {
+    ... on ScheduledOperation {
       remoteTypeName: __typename
       remoteId: id
+      stage
     }
   }
   url

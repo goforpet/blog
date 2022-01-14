@@ -1,5 +1,7 @@
 require("dotenv").config()
 
+const siteUrl = process.env.URL || `https://${process.env.HOST}`
+
 module.exports = {
   siteMetadata: {
     title: process.env.TITLE,
@@ -8,13 +10,13 @@ module.exports = {
       language: process.env.LOCALE,
       culture: process.env.CULTURE,
     },
-    siteUrl: process.env.URL,
+    siteUrl,
     author: process.env.AUTHOR,
     organization: {
       company: process.env.ORG_COMPANY,
       address: process.env.ORG_ADDRESS_STREET,
-      url: process.env.URL,
-      logo: process.env.URL + "/logo.jpg",
+      url: siteUrl,
+      logo: new URL("/logo.jpg", siteUrl).href,
       zipCode: process.env.ORG_ADDRESS_ZIPCODE,
       city: process.env.ORG_ADDRESS_CITY,
       province: process.env.ORG_ADDRESS_PROVINCE,
@@ -69,11 +71,6 @@ module.exports = {
         output: "/./",
         query: `
           {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
             allSitePage {
               nodes {
                 path
@@ -86,12 +83,7 @@ module.exports = {
               }
             }
         }`,
-        resolvePages: ({
-          site: {
-            siteMetadata: { siteUrl },
-          },
-          allSitePage: { nodes },
-        }) =>
+        resolvePages: ({ allSitePage: { nodes } }) =>
           nodes.map(({ path, context }) => {
             const page = {
               path: new URL(path, siteUrl).href,
@@ -235,18 +227,19 @@ module.exports = {
           {
             serialize: ({
               query: {
-                site,
                 allGraphCmsPost: { nodes },
               },
             }) => {
               return nodes.map(
                 ({ title, excerpt, publishedAt, slug, content: { html } }) => {
+                  const url = new URL(slug, siteUrl).href
+
                   return {
                     title,
                     description: excerpt,
                     date: publishedAt,
-                    url: new URL(slug, site.siteMetadata.siteUrl).href,
-                    guid: new URL(slug, site.siteMetadata.siteUrl).href,
+                    url,
+                    guid: url,
                     custom_elements: [{ "content:encoded": html }],
                   }
                 }

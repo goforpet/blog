@@ -1,15 +1,13 @@
-require('dotenv').config();
+require("dotenv").config()
 
-const path = require('path');
-const moment = require('moment');
-const paginator = require('./src/utils/paginator');
+const path = require("path")
+const moment = require("moment")
+const paginator = require("./src/utils/paginator")
 
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
   const { data } = await graphql(`
     query {
-      categories: allGraphCmsCategory(
-        filter: { stage: { eq: PUBLISHED } }
-      ) {
+      categories: allGraphCmsCategory(filter: { stage: { eq: PUBLISHED } }) {
         nodes {
           id
           stage
@@ -17,9 +15,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
           name
         }
       }
-      pages: allGraphCmsPage(
-        filter: { stage: { eq: PUBLISHED } }
-      ) {
+      pages: allGraphCmsPage(filter: { stage: { eq: PUBLISHED } }) {
         nodes {
           id
           content {
@@ -29,14 +25,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
               }
             }
           }
-          seo {
-            description
-            image {
-              url
-            }
-            keywords
-            title
-          }
+          keywords
           slug
           subtitle
           title
@@ -69,14 +58,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
             date: formattedDate
             productId
             excerpt
-            seo {
-              description
-              image {
-                url
-              }
-              keywords
-              title
-            }
+            keywords
             slug
             title
             categories {
@@ -94,27 +76,27 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         }
       }
     }
-  `);
+  `)
 
   if (data.errors) {
-    throw data.errors;
+    throw data.errors
   }
 
-  const categories = {};
+  const categories = {}
 
   data.posts.edges.forEach(({ nextPost, page, previousPost }) => {
     if (page.categories) {
-      page.categories.forEach((category) => {
+      page.categories.forEach(category => {
         if (categories[category.slug]) {
-          categories[category.slug] += 1;
+          categories[category.slug] += 1
         } else {
-          categories[category.slug] = 1;
+          categories[category.slug] = 1
         }
-      });
+      })
     }
 
     createPage({
-      component: path.resolve('./src/templates/post.jsx'),
+      component: path.resolve("./src/templates/post.jsx"),
       context: {
         id: page.id,
         page,
@@ -123,45 +105,54 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         previousId: previousPost ? previousPost.id : null,
         nextId: nextPost ? nextPost.id : null,
         productId: page.productId,
-        type: 'post'
+        type: "post",
       },
-      path: `/${page.slug}`
-    });
-  });
+      path: `/${page.slug}`,
+    })
+  })
 
-  data.pages.nodes.forEach((page) => {
+  data.pages.nodes.forEach(page => {
     createPage({
-      component: path.resolve('./src/templates/page.jsx'),
+      component: path.resolve("./src/templates/page.jsx"),
       context: {
         page,
-        type: 'page'
+        type: "page",
       },
-      path: `/pages/${page.slug}`
-    });
-  });
+      path: `/pages/${page.slug}`,
+    })
+  })
 
-  data.categories.nodes.forEach((page) => {
-    paginator.listing(createPage, { limit: 15, count: categories[page.slug], page, slug: 'categories' });
-  });
+  data.categories.nodes.forEach(page => {
+    paginator.listing(createPage, {
+      limit: 15,
+      count: categories[page.slug],
+      page,
+      slug: "categories",
+    })
+  })
 
-  paginator.articles(createPage, { limit: 15, count: data.posts.edges.length, slug: 'articles' });
-};
+  paginator.articles(createPage, {
+    limit: 15,
+    count: data.posts.edges.length,
+    slug: "articles",
+  })
+}
 
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     GraphCMS_Post: {
       formattedDate: {
-        type: 'String',
-        resolve: (source) => {
-          const date = new Date(source.date);
-          const m = moment(date);
-          m.locale(process.env.LOCALE);
+        type: "String",
+        resolve: source => {
+          const date = new Date(source.date)
+          const m = moment(date)
+          m.locale(process.env.LOCALE)
 
-          return m.format('l');
-        }
-      }
-    }
-  };
+          return m.format("l")
+        },
+      },
+    },
+  }
 
-  createResolvers(resolvers);
-};
+  createResolvers(resolvers)
+}

@@ -58,16 +58,13 @@ fragment ScheduledOperation on ScheduledOperation {
     ... on Page {
       remoteTypeName: __typename
       remoteId: id
+      locale
       stage
     }
     ... on Post {
       remoteTypeName: __typename
       remoteId: id
-      stage
-    }
-    ... on Seo {
-      remoteTypeName: __typename
-      remoteId: id
+      locale
       stage
     }
   }
