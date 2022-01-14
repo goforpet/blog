@@ -3,6 +3,9 @@
 .footer {
   a {
     color: $primary-invert;
+    &:hover {
+      color: $primary-invert;
+    }
   }
   ul {
     li {
@@ -27,6 +30,7 @@
     &.title {
       font-size: $size-4;
       text-transform: uppercase;
+      color: $primary-invert;
     }
   }
   .logo {
