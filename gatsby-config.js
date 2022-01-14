@@ -70,7 +70,12 @@ module.exports = {
       options: {
         output: "/./",
         query: `
-          {
+        {
+          site: {
+            siteMetadata {
+              siteUrl
+            }
+          }
             allSitePage {
               nodes {
                 path
