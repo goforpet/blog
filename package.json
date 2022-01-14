@@ -12,6 +12,7 @@
     "@emotion/react": "^11.1.5",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@pittica/art": "^2.1.0",
     "@pittica/gatsby-plugin-cookiehub": "^2.1.0",
     "@pittica/gatsby-plugin-seo": "^3.0.8",
     "@pittica/gatsby-source-prestashop": "^0.2.2",

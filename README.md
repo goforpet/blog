@@ -11,14 +11,20 @@
 ## Install
 
 ```shell
-cd graphcms-blog
+cd blog
 cp .env.sample .env
 ```
 
-3. **Start building!**
+### Develop
 
 ```shell
-yarn dev
+gatsby develop
+```
+
+### Build
+
+```shell
+gatsby build
 ```
 
 ## Features
@@ -29,4 +35,4 @@ yarn dev
 
 ## Copyright
 
-(c) 2021 Go For Pet S.r.l.
+(c) 2022 Pittica S.r.l.

@@ -2,6 +2,7 @@ import React from "react"
 import classnames from "classnames"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { SocialFollow } from "@pittica/gatsby-plugin-seo"
+import { Credits } from "@pittica/art"
 
 import FooterTax from "../ui/footer-tax"
 
@@ -113,6 +114,14 @@ export default function Footer() {
           <div className={classnames("column", "is-one-third")}>
             <h3 className="title">Seguici</h3>
             <SocialFollow />
+          </div>
+        </div>
+        <div className="columns">
+          <div className={classNames("column", "is-three-fifths")}>
+            © {new Date().getFullYear()}, {organization.company}
+          </div>
+          <div className={classNames("column", "is-two-fifths")}>
+            <Credits />
           </div>
         </div>
       </div>
