@@ -24,6 +24,10 @@
     &.company {
       padding-bottom: $size-7;
     }
+    &.title {
+      font-size: $size-4;
+      text-transform: uppercase;
+    }
   }
   .logo {
     i {
@@ -39,10 +43,6 @@
     }
   }
   .social-follow {
-    h3 {
-      font-size: $size-4;
-      text-transform: uppercase;
-    }
     li {
       display: inline-block;
       padding-right: $size-6 / 2;

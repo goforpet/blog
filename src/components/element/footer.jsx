@@ -110,10 +110,8 @@ export default function Footer() {
               </aside>
             )}
           </div>
-          <div
-            className={classnames("column", "is-one-third", "social-follow")}
-          >
-            <h3>Seguici</h3>
+          <div className={classnames("column", "is-one-third")}>
+            <h3 className="title">Seguici</h3>
             <SocialFollow />
           </div>
         </div>
