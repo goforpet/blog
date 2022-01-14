@@ -71,27 +71,25 @@ module.exports = {
         output: "/./",
         query: `
         {
-          site: {
-            siteMetadata {
-              siteUrl
-            }
-          }
-            allSitePage {
-              nodes {
-                path
-                context {
-                  page {
-                    updatedAt
-                  }
-                  type
+          allSitePage {
+            nodes {
+              path
+              context {
+                page {
+                  updatedAt
                 }
+                type
               }
             }
+          }
         }`,
+        resolveSiteUrl: () => siteUrl,
+        serialize: page => page,
         resolvePages: ({ allSitePage: { nodes } }) =>
           nodes.map(({ path, context }) => {
             const page = {
-              path: new URL(path, siteUrl).href,
+              path,
+              url: new URL(path, siteUrl).href,
               changefreq: "daily",
               priority: 0.5,
               lastmod: null,
@@ -120,9 +118,6 @@ module.exports = {
 
             return page
           }),
-        serialize: ({ path, changefreq, priority, lastmod }) => {
-          return { url: path, changefreq, priority, lastmod }
-        },
       },
     },
     {
